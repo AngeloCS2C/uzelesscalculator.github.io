@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Useless Calculator mainhtml</title>
+  <link rel="stylesheet" href="calculatorUI.css">
+  <style>
+    @font-face {
+      font-family: 'Outfit';
+      src: url('Outfit/Outfit-VariableFont_wght.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+
+    .mainbox {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .leftbox {
+      width: fit-content;
+      height: auto;
+    }
+
+    .center {
+      background-color: #A9C3B6;
+      width: 400px;
+      height: 250px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center horizontally */
+      justify-content: center; /* Center vertically */
+    }
+
+    .center h2 {
+      margin-bottom: 20px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .right {
+      width: auto;
+    }
+
+   /*  footer {
+      background-image: url(calcimaGES/footer\(1\).png);
+      width: 916px;
+      height: 58px;
+      margin-top: auto;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 30px;
+    } */
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 300px;
+      text-align: center;
+      margin-top: 20px; /* Adjusted margin */
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #666;
+      position: absolute;
+      top: 0;
+      left: 10px;
+      transition: top 0.3s, font-size 0.3s;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 18px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      height: 20px;
+      background: #CEDFDF;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+      
+    }
+
+  /*   .form-group input:focus + label,
+    .form-group input:valid + label {
+      outline: none;
+    } */
+
+    .form-group button {
+      background-color: #CEDFDF;
+      color: black;
+      font-weight: 600;
+      padding: 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      
+      
+    }
+
+    .form-group button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mainbox">
+  <div class="leftbox">
+    <div class="logo"></div>
+  </div>
+
+  <div class="center">
+    <h2>LOGIN HERE</h2>
+    <form class="login-form">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" >
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" >
+        </div>
+        <div class="form-group">
+          <!-- <button type="submit">Login</button> -->
+         <!--  <button onclick="showLoading()">Login</button> -->
+        <!--   <button onclick="loadContent()">Login</button>
+    
+          <div id="contentContainer"></div> -->
+          <button onclick="showLoadingAnimation()"><a href="loadinganimation.html">Login</a></button>
+        </div>
+    </form>
+  </div>
+
+  <div class="right"></div>
+</div> 
+
+<footer></footer>
+
+<script>
+     /*  function showLoading() {
+            window.location.href = 'loadinganimation.html';
+        } */
+  </script>
+</body>
+</html>

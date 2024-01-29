@@ -1,0 +1,78 @@
+body{
+    
+        background-color: #91AC9A;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: 'Outfit', sans-serif;
+        position: relative;
+
+}
+footer {
+    background-image: url(calcimaGES/footer\(1\).png);
+    width: 916px;
+    height: 58px;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.logo {
+    background-image: url(images/logo\(2\).png);
+    width: 240px;
+    height: 235px;
+}
+
+.mainbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    flex-grow: 1;
+  }
+.leftbox {
+    width: fit-content;
+    height:auto;
+}
+/* .center {
+    background-color: #A9C3B6;
+    width: 500px;
+    height:300px;
+    margin-left: 90px;
+    margin-top: 70px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+} */
+.right {
+    width: auto;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: row;
+    
+}
+.display {
+    width: 170px;
+    height: 50px;
+    background: #CEDFDF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-color: #CEDFDF;
+   /*  margin-top: -100px;
+    margin-left: -150px;
+ */}
+button {
+    width: 90px;
+    height:50px;
+    
+}
+.leftButtons{
+    display:flex;
+    flex-direction: column;
+}
+.rightOperators{
+    display: flex;
+    flex-direction: column;
+}

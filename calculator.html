@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Useless Calculator</title>
+  <link rel="stylesheet" href="calculatorUI.css">
+  <style>
+    @font-face {
+      font-family: 'Outfit';
+      src: url('Outfit/Outfit-VariableFont_wght.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .leftbox {
+      width: fit-content;
+      height: auto;
+    }
+
+    .center {
+      background-color: #A9C3B6;
+      width: 500px;
+      height: 300px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 3fr 2fr; /* 60% and 40% */
+      gap: 20px;
+      align-items: center;
+      
+    }
+
+    .leftButtons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .rightOperators {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .display {
+      grid-column: span 3; /* Takes 3 columns in the left grid */
+      width:270px;
+      height: 50px;
+      background: #CEDFDF;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .button, .operator {
+      width: 100%;
+      height: 50px;
+      background-color: #A6C3CE;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .rightOperators button{
+        /* width: px; */
+        height:90px;
+        
+    }
+    .rightOperators{
+        margin-top: -60px ;
+        /* margin-right:-20px; */
+    }
+    .floatingButton {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #FFD700;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .drawerContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      pointer-events: none;
+    }
+
+    .drawer {
+      width: 300px;
+      height: 100%;
+      background-color: #FFD700;
+      padding: 20px;
+      box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      pointer-events: auto;
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(100%);
+    }
+
+    .drawer.open {
+      transform: translateX(0);
+    }
+
+    .uploadButton, .logoutButton, .cancelButton {
+      width: 100%;
+      height: 40px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .uploadButton {
+      background-color: #4CAF50;
+      color: #fff;
+    }
+
+    .logoutButton {
+      background-color: #FF4500;
+      color: #fff;
+    }
+
+    .cancelButton {
+      background-color: #808080;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mainbox">
+  <div class="leftbox">
+    <div class="logo"></div>
+  </div>
+
+  <div class="center">
+    <input type="text" class="display" />
+    <div class="leftButtons">
+      <button class="button">9</button>
+      <button class="button">8</button>
+      <button class="button">7</button>
+      <button class="button">6</button>
+      <button class="button">5</button>
+      <button class="button">4</button>
+      <button class="button">3</button>
+      <button class="button">2</button>
+      <button class="button">1</button>
+      <button class="button">0</button>
+      <button class="button">.</button>
+      <button class="operator">DEL</button>
+    </div>
+    <div class="rightOperators">
+      <button class="operator">=</button>
+      <button class="operator">*</button>
+      <button class="operator">/</button>
+      <button class="operator">+</button>
+      <button class="operator">-</button>
+      <button class="operator">AC</button>
+    </div>
+  </div>
+
+  <div class="right"></div>
+</div> 
+
+
+
+<footer></footer>
+
+<!-- Floating Premium Logout button -->
+<button class="floatingButton" onclick="togglePremiumLogoutDrawer()">Premium Logout</button>
+
+<!-- Premium Logout drawer -->
+<div class="drawerContainer" id="drawerContainer">
+  <div class="drawer" id="premiumLogoutDrawer">
+    <h4>Premium Logout</h4>
+    <p>SEND YOUR PAYMENT HERE gcash: 09450348247. Upload below the screenshot proof of PAYMENT</p>
+    <input type="file" id="fileUpload" style="display: none;">
+    <button class="uploadButton" onclick="showFileUpload()">Upload Proof</button>
+    <button class="logoutButton" onclick="redirectToMain()">Log Out</button>
+    <button class="cancelButton" onclick="togglePremiumLogoutDrawer()">Cancel</button>
+  </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    let display = document.querySelector('.display');
+    let buttons = document.querySelectorAll('.button');
+    let operators = document.querySelectorAll('.operator');
+    let currentInput = '';
+
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        currentInput += button.textContent;
+        display.value = currentInput;
+      });
+    });
+
+    operators.forEach(operator => {
+      operator.addEventListener('click', function () {
+        if (operator.textContent === 'DEL') {
+          currentInput = currentInput.slice(0, -1);
+        } else if (operator.textContent === 'AC') {
+          currentInput = '';
+        } else if (operator.textContent === '=') {
+          try {
+            currentInput = eval(currentInput).toString();
+          } catch (error) {
+            currentInput = 'Error';
+          }
+        } else {
+          currentInput += operator.textContent;
+        }
+
+        display.value = currentInput;
+      });
+    });
+
+      // Function to show the file upload input
+    window.showFileUpload = function () {
+      document.getElementById('fileUpload').style.display = 'block';
+    };
+
+    // Function to toggle the Premium Logout drawer
+    window.togglePremiumLogoutDrawer = function () {
+      const drawer = document.getElementById('premiumLogoutDrawer');
+      drawer.classList.toggle('open');
+    };
+
+    // Function to redirect to main.html
+    window.redirectToMain = function () {
+      window.location.href = 'main.html';
+    };
+  });
+    </script>
+    
+</body>
+</html>
